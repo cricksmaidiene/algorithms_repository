@@ -70,14 +70,12 @@ class RecursiveBinarySearch{
 				arr2[i]=arr[i];
 			return BinarySearch(div2,arr2,key);
 		}
-		else if(key>arr[mid]){
+		else{ //if(key>arr[mid]
 			int k=0;
 			int arr2[]=new int[div2];
 			for(int i=mid+1;i<n;i++,k++)
 				arr2[k]=arr[i];
 			return BinarySearch(div2,arr2,key);
 		}
-		else
-			return -2;
 	}
 }

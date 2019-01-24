@@ -10,7 +10,7 @@ class LinearSearch{
 		int n = sc.nextInt();
 		int arr[]= new int[n];
 		for(int i=0;i<n;i++)
-			arr[i]=(int)(Math.random());
+			arr[i]=(int)(1000*Math.random());
 		
 		System.out.print("\nEnter the key to be searched: ");
 		int key = sc.nextInt();

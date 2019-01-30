@@ -3,26 +3,42 @@ import java.util.*;
 class StackArray{
 
 	Scanner sc = new Scanner(System.in);
-	static int st[];
-	static int top=-1;
+	int st[];
+	int top=-1;
+	int n=0;
 
 	public static void main(String args[])throws IOException{
 		
 		StackArray stack = new StackArray();
-		int n = stack.Input(1);
-		if(n==-1) return;
-		stack.CreateStack(n);
+		stack.Driver();
+	}
+	
+	public void Driver(){	
+		
+		String in=""; 
+		int elem=0;
+
+		System.out.print("Enter the size of the stack: ");
+		if(ZeroStack())
+			return;
+
+		CreateStack(n);
 		boolean INTR=true;
 		do{
-			int choice = stack.StackMenu();
+			int choice = StackMenu();
 			switch (choice){
 				case (1):
 				{
-					if(!stack.StackOverflow()){	
+					if(!StackOverflow()){	
 						System.out.print("PUSH: ");
-						int element = stack.Input(0);
-						stack.Push(element);
-						System.out.println(element+" has been pushed into stack");
+						in = SafeInput();
+						if(in.equals("invalid")){
+							sc.nextLine();
+							break;
+						}
+						elem = Integer.parseInt(in);
+						Push(elem);
+						System.out.println(elem+" has been pushed into stack");
 					}
 					else
 						System.out.println("Stack is full");
@@ -30,8 +46,8 @@ class StackArray{
 				}
 				case (2):
 				{
-					if(!stack.StackUnderflow()){
-						int elem = stack.Pop();
+					if(!StackUnderflow()){
+						elem = Pop();
 						System.out.println("Popped element: "+elem);
 					}
 					else
@@ -40,7 +56,7 @@ class StackArray{
 				}
 				case (3):
 				{
-					if(!stack.StackUnderflow())
+					if(!StackUnderflow())
 						System.out.println("Top element is: "+st[top]);
 					else
 						System.out.println("Stack is empty");	
@@ -53,8 +69,11 @@ class StackArray{
 				}
 				case (5):
 				{
-					if(!stack.StackUnderflow())
-						stack.Display();
+					if(!StackUnderflow()){
+						System.out.print("STACK: ( ");
+						Display();
+						System.out.println(")");
+					}
 					else
 						System.out.println("Stack is empty");	
 					break;
@@ -69,18 +88,31 @@ class StackArray{
 		}while(INTR);	
 	}
 	
-	public int Input(int flag){
-		if(flag==1){
-			System.out.print("Enter the size of the stack: ");
-			int n = sc.nextInt();
-			if(n<=0){
-				System.out.println("Zero stack size. Exiting...");
-				return -1;
-			}
-			return n;
+	public boolean ZeroStack(){
+		String in="";
+		in = SafeInput();
+		if(in.equals("invalid"))
+			return true;
+		
+		n = Integer.parseInt(in);
+		if(n<=0){
+			System.out.println("Zero stack size. Exiting...");
+		 	return true;
 		}
-		else 
-			return sc.nextInt();
+		return false; 	
+	}
+	
+	public String SafeInput(){
+		int a;
+		try{
+				a=sc.nextInt();
+				return Integer.toString(a);
+			}	
+			catch(InputMismatchException e)
+			{
+				System.out.println("Result not an integer");
+				return "invalid";
+			}
 	}
 
 	public void CreateStack(int n){
@@ -90,33 +122,31 @@ class StackArray{
 	public int StackMenu(){
 		System.out.println("STACK OPTIONS: ");
 		System.out.println("1.PUSH 2.POP 3.PEEK 4.SIZE 5.DISPLAY 0.EXIT");
-		return sc.nextInt();
+		String in = SafeInput();
+		if(in=="invalid")
+			return -1;
+		else return Integer.parseInt(in);
 	}
 
 	public void Push(int elem){
-		top++;
-		st[top]=elem;
+		st[++top]=elem;
 	}
 	public int Pop(){
-		--top;
-		return st[top+1];
+		return st[(--top)+1];
 	}
 	public void Display(){
 		for(int i=0;i<=top;i++)
 			System.out.print(st[i]+" ");
-		System.out.println();
 	}
 	public boolean StackOverflow(){
-		if(top==(st.length-1))
-			return true;
-		else
-			return false;
+		boolean value;
+		value = (top==(st.length-1)) ? true : false;
+		return value;
 	}
 	public boolean StackUnderflow(){
-		if(top==-1)
-			return true;
-		else
-			return false;
+		boolean value;
+		value = (top==-1) ? true : false;
+		return value;
 	}
 
 }

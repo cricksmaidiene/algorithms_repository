@@ -123,8 +123,10 @@ class StackArray{
 		System.out.println("STACK OPTIONS: ");
 		System.out.println("1.PUSH 2.POP 3.PEEK 4.SIZE 5.DISPLAY 0.EXIT");
 		String in = SafeInput();
-		if(in=="invalid")
+		if(in=="invalid"){
 			return -1;
+			sc.nextLine();
+		}	
 		else return Integer.parseInt(in);
 	}
 

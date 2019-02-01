@@ -44,8 +44,8 @@ class SortingComparison{
 		System.out.println("Elapsed Time: "+time+"ns "+time/1000+"us "+time/100000+"ms "+time/1000000000+"s");
 		Copy(arrCopy,arr,n);
 
-		startTime = System.nanoTime();
 		InsertionSort insertionsort = new InsertionSort();
+		startTime = System.nanoTime();
 		insertionsort.InsertionSortRoutine(n,arr);
 		System.out.println("Insertion sort complete. Statistics: ");
 		endTime = System.nanoTime();

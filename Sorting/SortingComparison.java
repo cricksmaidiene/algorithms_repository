@@ -70,14 +70,6 @@ class SortingComparison{
 		time = endTime-startTime;
 		System.out.println("Elapsed Time: "+time+"ns "+time/1000+"us "+time/100000+"ms "+time/1000000000+"s");
 		Copy(arrCopy,arr,n);
-
-		/*startTime = System.nanoTime();
-		HeapSort heapsort = new HeapSort();
-		heapsort.HeapSortRoutine(n,arr);
-		System.out.println("Heap sort complete. Statistics: ");
-		endTime = System.nanoTime();
-		time = endTime-startTime;
-		System.out.println("Elapsed Time: "+time+"ns "+time/1000+"us "+time/100000+"ms "+time/1000000000+"s");*/
 	}	
 
 	public String SafeInput(){

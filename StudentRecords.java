@@ -56,7 +56,6 @@ class StudentRecords{
 					String four = Float.toString(gpa);
 					
 					String concat = one+" "+two+" "+three+" "+four;
-					System.out.println(concat);
 					try{
 
 						writer.write(concat,0,concat.length());

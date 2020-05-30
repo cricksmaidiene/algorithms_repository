@@ -125,7 +125,6 @@ class StackArray{
 		String in = SafeInput();
 		if(in=="invalid"){
 			return -1;
-			sc.nextLine();
 		}	
 		else return Integer.parseInt(in);
 	}
